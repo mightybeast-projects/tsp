@@ -1,0 +1,13 @@
+{
+    "name": "TSP",
+    "version": "1.0.0",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    },
+    "scripts": {
+        "dev": "nodemon src/app.js"
+    }
+}
