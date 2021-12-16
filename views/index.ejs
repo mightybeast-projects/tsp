@@ -1,7 +1,78 @@
-<link rel="stylesheet" href="css/style.css">
-<script src="https://apis.google.com/js/api.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="js/google-account-controller.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TopSongsPicker</title>
+        <link rel="shortcut icon" href="#">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://apis.google.com/js/api.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="lib/jquery-3.6.0.min.js"></script>
+        <script src="lib/jquery-ui.js"></script>
+        <script src="js/google-account-controller.js"></script>
+        <script src="js/youtube-data-controller.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="control-panel">
+                <div class="btn-group" role="group">
+                    <div class="g-signin2" onclick="authenticate().then(loadClient)">Google authorize</div>
+                    <button id="get-playlists-button" class="btn btn-dark" onclick="getPlaylists()" disabled>Get playlists</button>
+                    <button id="get-songs-button" class="btn btn-dark" onclick="getAllSongs()" disabled>Get songs</button>
+                    <button id="create-playlist-button" class="btn btn-dark" onclick="createNewPlaylist()" disabled>Create new playlist</button>
+                    <input class="new-playlist-name" type="text">
+                </div>
+            </div>
+            
+            <table class="playlist-table">
+                <thead class="playlist-table-head">
+                    <tr class="playlist-table-row">
+                        <td class="playlist-checkbox-cell"></td>
+                        <td class="playlist-thumbnail-cell">PlaylistThumbnail</td>
+                        <td class="playlist-name-cell">PlaylistName</td>
+                        <td class="playlist-date-cell">PlaylistPublishDate</td>
+                    </tr>
+                </thead>
+                <tbody class="playlist-table-body">
+                    <!--Playlists goes here-->
+                </tbody>
+            </table>
+            
+            <div class="songs-div">
+                <div class="song-pool-col">
+                    <div class="song-cell song-pool-cell">
+                        <label class="song-source">SongPool</label>
+                    </div>
+                    <div class="song-pool-content-parent sortable">
+                        <!--Songs goes here-->
+                    </div>
+                </div>
+            
+                <div class="song-top-col">
+                    <div class="song-cell song-top-cell">
+                        <label class="song-source">Top50Songs</label>
+                    </div>
+                    <div class="song-top-content-parent sortable">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 
-<button class="g-signin2" onclick="authenticate().then(loadClient)">authorize and load</button>
-<button onclick="execute()">execute</button>
+    <script>
+        $( function() {
+            $(".song-pool-content-parent").sortable({
+                connectWith: ".sortable"
+            });
+            $(".song-top-content-parent").sortable({
+                connectWith: ".sortable",
+                receive: function( event, ui ) {
+                    checkSongsCap($(this));
+                }
+            });
+        });
+    </script>
+</html>
