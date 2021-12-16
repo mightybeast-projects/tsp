@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="css/style.css">
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="js/google-account-controller.js"></script>
+
+<button class="g-signin2" onclick="authenticate().then(loadClient)">authorize and load</button>
+<button onclick="execute()">execute</button>
