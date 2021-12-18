@@ -1,3 +1,5 @@
+import * as templateController from "../template-controller.js";
+
 var receivedPlaylists;
 
 export function getAllSongsFrom(playlists) {
@@ -53,7 +55,7 @@ function handleSongsReponse(response, playlistID) {
         }
         song.fromPlaylist = playlistTitle;
 
-        appendSongTemplate(song.id, song.title, song.thumbnail, song.fromPlaylist);
+        templateController.appendSongTemplate(song, ".song-pool-content-parent");
     });
 }
 
@@ -64,21 +66,6 @@ function trimTitle(songTitle) {
     songTitle = songTitle.replace("【Dubstep】", "");
     songTitle = songTitle.replace(" - ", "\n");
     return songTitle;
-}
-
-function appendSongTemplate(songID, songTitle, songThumbnail, songPlaylist) {
-    $(".song-pool-content-parent")
-        .append(
-            `
-        <div id="` + songID + `" class="song-cell ui-state-default" style="
-            background-image: url(` + songThumbnail + `);
-        ">
-            <button type="button" class="btn-close btn-close-white" aria-label="Close" onClick="removeSongDiv(this)"></button>
-            <label class="song-title">` + songTitle + `</label>
-            <label class="song-source">` + songPlaylist + `</label>
-        </div>
-        `
-        );
 }
 
 function changeDisplay(element, displayValue) {

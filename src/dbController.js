@@ -14,3 +14,20 @@ async function checkConnection(){
         collection = database.collection(collectionName);
     }
 }
+
+async function insertOrUpdate(newState, userEmail)
+{
+    await checkConnection();
+    await collection.replaceOne({ userEmail : userEmail }, newState, { upsert: true });
+}
+
+async function findSavedState(userEmail)
+{
+    await checkConnection();
+    return await collection.find( {userEmail : userEmail} ).toArray();
+}
+
+module.exports = {
+    insertOrUpdate,
+    findSavedState
+};

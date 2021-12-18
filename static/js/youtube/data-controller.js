@@ -2,7 +2,6 @@ import * as gac from '../google/account-controller.js';
 import * as playlistController from './playlists-controller.js';
 import * as songsController from './songs-controller.js';
 import * as stateController from "../state-controller.js";
-jQuery.fn.reverse = [].reverse;
 
 loadGAPIClient();
 
@@ -28,5 +27,6 @@ window.getPlaylists = playlistController.getPlaylists;
 window.getAllSongs = function() { songsController.getAllSongsFrom(playlistController.playlists); };
 window.createNewPlaylist = playlistController.createNewPlaylist;
 window.saveState = stateController.saveState;
+window.loadState = stateController.loadState;
 window.removeSongDiv = removeSongDiv;
 window.checkSongsCap = checkSongsCap;

@@ -1,3 +1,7 @@
+import * as templateController from "../template-controller.js";
+
+jQuery.fn.reverse = [].reverse;
+
 export var playlists = new Array();
 
 export function getPlaylists() {
@@ -44,26 +48,8 @@ function handlePlaylistsReponse(response) {
 
         playlists.push(playlist);
 
-        appendPlaylistTemplate(playlist.id, playlist.thumbnail, playlist.title, playlist.publishDate);
+        templateController.appendPlaylistTemplate(playlist);
     });
-}
-
-function appendPlaylistTemplate(playlistID, playlistThumbnail, playlistTitle, playlistPublishDate) {
-    $(".playlist-table-body")
-        .append(
-            `
-        <tr class="table-row">
-            <td class="playlist-checkbox-cell">
-                <input class="playlist-checkbox" type="checkbox" id="` + playlistID + `">
-            </td>
-            <td class="playlist-thumbnail-cell">
-                <img src="` + playlistThumbnail + `" width="320" height="180">
-            </td>
-            <td class="playlist-name-cell">` + playlistTitle + `</td>
-            <td class="playlist-date-cell">` + playlistPublishDate + `</td>
-        </tr>
-        `
-        );
 }
 
 function insertNewPlaylist(playlistName) {
