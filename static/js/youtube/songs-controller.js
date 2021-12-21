@@ -1,73 +1,67 @@
-import * as templateController from "../template-controller.js";
+import * as templateController from '../template-controller.js';
+import * as utils from '../utils.js';
 
-var receivedPlaylists;
+const titleJunk = [
+    "[NCS Release]",
+    "[Monstercat]",
+    "[Monstercat Release]",
+    "[Monstercat EP Release]",
+    "Official Music Video",
+    "【Dubstep】",
+    "[Dubstep]",
+    "【Drumstep】"
+]
 
-export function getAllSongsFrom(playlists) {
-    receivedPlaylists = playlists;
+var playlistId;
+var playlistTitle;
+
+export function getAllSongs() {
     var checkboxes = $('.playlist-checkbox:checkbox:checked');
 
-    checkboxes.each(function () {
-        var checkedCheckbox = this;
-        var playlistID = $(checkedCheckbox).attr('id');
-        getSongsOfPlaylist(playlistID);
-    });
+    checkboxes.each((index, element) =>
+        setTimeout(() => getSongsOfCheckedPlaylist(element), index * 200));
 }
 
-function getSongsOfPlaylist(playlistID) {
+function getSongsOfCheckedPlaylist(playlistElement) {
+    playlistId = $(playlistElement).attr('id');
+    playlistTitle = $(playlistElement).parent().parent().children(".playlist-name-cell").text();
+
     gapi.client.youtube.playlistItems.list({
-        "part": [
-            "snippet,contentDetails"
-        ],
+        "part": ["snippet,contentDetails"],
         "maxResults": 200,
-        "playlistId": playlistID
+        "playlistId": playlistId
     })
-    .then(
-        function (response) {
-            handleSongsReponse(response, playlistID);
-        },
-        function (err) {
-            console.error("Execute error", err);
-        });
+        .then(
+            response => handleSongsReponse(response),
+            err => console.error("Execute error", err)
+        );
 }
 
-function handleSongsReponse(response, playlistID) {
-    var result = response.result;
-    console.log(result.items);
+function handleSongsReponse(response) {
+    changeLayout();
+    response.result.items.forEach(element => showSong(element));
+    console.log(`Added ${response.result.items.length} songs from ${playlistTitle}`);
+}
 
-    changeDisplay($(".playlist-table"), "none");
-    changeDisplay($(".songs-div"), "flex");
+function showSong(arraySong) {
+    var song = new Object();
+    song.id = arraySong.snippet.resourceId.videoId;
+    song.title = trimTitle(arraySong.snippet.title);
+    song.thumbnail = arraySong.snippet.thumbnails.high.url;
+    song.fromPlaylist = playlistTitle;
+
+    templateController.appendSongTemplateToSongPool(song);
+}
+
+function changeLayout() {
+    utils.changeDisplay($(".playlist-table"), "none");
+    utils.changeDisplay($(".songs-div"), "flex");
     $("#create-playlist-button").removeAttr("disabled");
-
-    var song;
-    var playlistTitle;
-
-    result.items.forEach(element => {
-        song = new Object();
-
-        song.id = element.snippet.resourceId.videoId;
-        song.title = trimTitle(element.snippet.title);
-        song.thumbnail = element.snippet.thumbnails.high.url;
-        if (playlistTitle == undefined) {
-            receivedPlaylists.forEach(element => {
-                if (element.id == playlistID)
-                    playlistTitle = element.title;
-            });
-        }
-        song.fromPlaylist = playlistTitle;
-
-        templateController.appendSongTemplate(song, ".song-pool-content-parent");
-    });
 }
 
 function trimTitle(songTitle) {
     songTitle = songTitle.trim();
-    songTitle = songTitle.replace("[Monstercat Release]", "");
-    songTitle = songTitle.replace("Official Music Video", "");
-    songTitle = songTitle.replace("【Dubstep】", "");
+    titleJunk.forEach(element => songTitle = songTitle.replace(element, ""));
     songTitle = songTitle.replace(" - ", "\n");
     return songTitle;
-}
-
-function changeDisplay(element, displayValue) {
-    $(element).css("display", displayValue);
 }

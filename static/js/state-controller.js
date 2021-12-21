@@ -1,4 +1,5 @@
-import * as templateController from "./template-controller.js";
+import * as templateController from './template-controller.js';
+import * as utils from './utils.js';
 
 var songsPool = new Array();
 var topSongs = new Array();
@@ -30,15 +31,11 @@ export function saveState()
 export function loadState()
 {
     var userEmail = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
-    var loadedState;
 
     $.ajax({
         type: "GET",
         url:"/load?userEmail=" + userEmail,
-        success : function(data) {
-            loadedState = data[0];
-            initializeState(loadedState);
-        }
+        success : states => initializeState(states[0])
     });
 }
 
@@ -65,18 +62,14 @@ function initializeState(state)
     songsPool = state.songsPoolState;
     topSongs = state.topSongsState;
 
-    changeDisplay($(".playlist-table"), "none");
-    changeDisplay($(".songs-div"), "flex");
+    utils.changeDisplay($(".playlist-table"), "none");
+    utils.changeDisplay($(".songs-div"), "flex");
 
     songsPool.forEach(element => {
-        templateController.appendSongTemplate(element, ".song-pool-content-parent");
+        templateController.appendSongTemplateToSongPool(element);
     });
 
     topSongs.forEach(element => {
-        templateController.appendSongTemplate(element, ".song-top-content-parent");
+        templateController.appendSongTemplateToSongTop(element);
     });
-}
-
-function changeDisplay(element, displayValue) {
-    $(element).css("display", displayValue);
 }
