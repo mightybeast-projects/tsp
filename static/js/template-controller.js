@@ -1,5 +1,6 @@
 export function appendPlaylistTemplate(playlist) {
-    $(".playlist-table-body").append(getPlaylistString(playlist));
+    $(".playlist-table-body").append(getOldPlaylistString(playlist));
+    $(".playlists-grid").append(getPlaylistString(playlist));
 }
 
 export function appendSongTemplateToSongPool(song) {
@@ -12,17 +13,29 @@ export function appendSongTemplateToSongTop(song) {
 
 function getPlaylistString(playlist) {
     return `
-        <tr class="table-row">
-            <td class="playlist-checkbox-cell">
-                <input class="playlist-checkbox" type="checkbox" id="${playlist.id}">
-            </td>
-            <td class="playlist-thumbnail-cell">
-                <img src="${playlist.thumbnail}" width="320" height="180">
-            </td>
-            <td class="playlist-name-cell">${playlist.title}</td>
-            <td class="playlist-date-cell">${playlist.publishDate}</td>
-        </tr>
-        `
+    <div class="playlist-element" onclick="togglePlaylist(this)">
+        <input class="playlist-checkbox" type="checkbox" hidden id="${playlist.id}">
+        <img class="playlist-thumbnail" src="${playlist.thumbnail}" width="320" height="180">
+        <div class="playlist-info">
+            <h5>${playlist.title}</h5>
+            <h7>${playlist.itemCount} songs</h7>
+        </div>
+    </div>`
+}
+
+function getOldPlaylistString(playlist) {
+    return `
+    <tr class="table-row">
+        <td class="playlist-checkbox-cell">
+            <input class="playlist-checkbox" type="checkbox" id="${playlist.id}">
+        </td>
+        <td class="playlist-thumbnail-cell">
+            <img src="${playlist.thumbnail}" width="320" height="180">
+        </td>
+        <td class="playlist-name-cell">${playlist.title}</td>
+        <td class="playlist-date-cell">${playlist.publishDate}</td>
+    </tr>
+    `
 }
 
 function getSongString(song) {

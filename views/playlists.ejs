@@ -18,86 +18,7 @@
         </h1>
 
         <div class="playlists-grid">
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
-            <div class="playlist-element" onclick="togglePlaylist(this)">
-                <input class="playlist-checkbox" type="checkbox" hidden>
-                <img class="playlist-thumbnail" src="https://i.ytimg.com/vi/qrMeSmMyh8s/mqdefault.jpg" width="320" height="180">
-                <div class="playlist-info">
-                    <h5>PlaylistName</h5>
-                    <h7>10 songs</h7>
-                </div>
-            </div>
+            <!--Playlists goes here-->
         </div>
 
         <button id="get-songs-button" class="btn btn-success get-songs-btn" onclick="getAllSongs()">Get songs</button>
@@ -124,5 +45,9 @@
 
             $(checkbox).prop("checked", !selected)
         }
+
+        $( document ).ready(async function() {
+            setTimeout(() => getPlaylists(), 500);
+        });
     </script>
 </html>

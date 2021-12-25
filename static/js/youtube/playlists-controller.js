@@ -55,7 +55,7 @@ function showPlaylists(response) {
 
 function showPlaylistElement(playlistElement) {
     var playlist = new Object();
-    playlist.publishDate = playlistElement.snippet.publishedAt;
+    playlist.itemCount = playlistElement.contentDetails.itemCount;
     playlist.id = playlistElement.id;
     playlist.title = playlistElement.snippet.title;
     playlist.thumbnail = playlistElement.snippet.thumbnails.medium.url;

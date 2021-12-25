@@ -1,6 +1,7 @@
 body {
     background-color: black;
     color: white;
+    user-select: none;
 }
 
 .visualizer-video {
@@ -36,12 +37,7 @@ body {
     justify-content: space-evenly;
 }
 
-.playlist-thumbnail {
-
-}
-
 .playlist-element {
-    margin: 2px;
     padding: 3px;
     border: 3px solid transparent;
     border-radius: 5px;

@@ -6,7 +6,7 @@ const signInScope = "https://www.googleapis.com/auth/youtube.force-ssl";
 const authConfig = { 
     client_id: clientId, 
     ux_mode: 'redirect',
-    redirect_uri: 'http://localhost:3000/lindex'
+    redirect_uri: 'http://localhost:3000/main'
 }
 
 export function loadClient() {
