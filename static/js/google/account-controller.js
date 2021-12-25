@@ -3,7 +3,11 @@ const APIKey = "AIzaSyADyXkYDPEhxIVZpdRgkh71N12qZPsyvjM";
 const clientLoadUrl = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest";
 const signInScope = "https://www.googleapis.com/auth/youtube.force-ssl";
 
-gapi.load("client:auth2", () => gapi.auth2.init({ client_id: clientId }));
+const authConfig = { 
+    client_id: clientId, 
+    ux_mode: 'redirect',
+    redirect_uri: 'http://localhost:3000/lindex'
+}
 
 export function loadClient() {
     gapi.client.setApiKey(APIKey);
@@ -25,9 +29,6 @@ function authenticate() {
             err => console.error("Error signing in", err));
 }
 
-function redirect() {
-    window.location.replace("http://localhost:3000/lindex");
-}
+gapi.load("client:auth2", () => gapi.auth2.init(authConfig));
 
 window.authenticate = authenticate;
-window.redirect = redirect;

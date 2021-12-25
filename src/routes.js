@@ -6,6 +6,10 @@ router.get('/', function(req, res) {
     res.render("index");
 });
 
+router.get('/playlists', function(req, res) {
+    res.render("playlists");
+});
+
 router.get('/lindex', function(req, res) {
     res.render("lindex");
 });
