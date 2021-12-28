@@ -16,20 +16,40 @@ var playlistId;
 var playlistTitle;
 
 export function getAllSongs() {
-    var checkboxes = $('.playlist-checkbox:checkbox:checked');
+    var checkboxes = $('.playlist-checkbox:checkbox:checked').reverse();
 
     checkboxes.each((index, element) =>
-        setTimeout(() => getSongsOfCheckedPlaylist(element), index * 200));
+        setTimeout(() => getSongsOfCheckedPlaylist(element), 150 * index)
+    );
 }
 
-function getSongsOfCheckedPlaylist(playlistElement) {
-    playlistId = $(playlistElement).attr('id');
-    playlistTitle = $(playlistElement).parent().parent().children(".playlist-name-cell").text();
+export function getAllSongsOf(playlists) {
+    playlists.forEach((playlist, index) =>
+        setTimeout(() => getSongsOfPlaylist(playlist), 300 * index)
+    );
+}
+
+function getSongsOfCheckedPlaylist(playlistCheckbox) {
+    playlistId = $(playlistCheckbox).attr('id');
+    playlistTitle = $(playlistCheckbox).parent().find(".playlist-title").text();
 
     gapi.client.youtube.playlistItems.list({
         "part": ["snippet,contentDetails"],
         "maxResults": 200,
         "playlistId": playlistId
+    })
+        .then(
+            response => handleSongsReponse(response),
+            err => console.error("Execute error", err)
+        );
+}
+
+function getSongsOfPlaylist(playlist) {
+    playlistTitle = playlist.title;
+    gapi.client.youtube.playlistItems.list({
+        "part": ["snippet,contentDetails"],
+        "maxResults": 200,
+        "playlistId": playlist.id
     })
         .then(
             response => handleSongsReponse(response),

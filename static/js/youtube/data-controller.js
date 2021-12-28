@@ -7,9 +7,11 @@ import * as utils from '../utils.js';
 setTimeout(async () => await gac.loadClient(), 60);
 
 window.getPlaylists = playlistController.getPlaylists;
+window.sendChosenPlaylists = playlistController.sendChosenPlaylists;
 window.getAllSongs = songsController.getAllSongs;
 window.createNewPlaylist = playlistController.createNewPlaylist;
 window.saveState = stateController.saveState;
 window.loadState = stateController.loadState;
 window.removeSongDiv = function (songDiv) { utils.removeSongDiv(songDiv); };
 window.checkSongsCap = function (songsParent) { utils.checkSongsCap(songsParent); };
+window.getAllSongsOf = function (playlists) { songsController.getAllSongsOf(playlists) }

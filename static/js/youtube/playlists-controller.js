@@ -41,6 +41,28 @@ export function getPlaylists() {
             err => console.error("Execute error", err)
         );
 }
+export function sendChosenPlaylists() {
+    var chosenPlaylistsId = $('.playlist-checkbox:checkbox:checked').get();
+    var chosenPlaylists = new Array();
+
+    chosenPlaylistsId.forEach(playlistCheckbox => {
+        playlists.forEach(playlist => {
+            if (playlist.id == playlistCheckbox.id)
+                chosenPlaylists.push(playlist);
+        })
+    });
+
+    var model = new Object();
+    model.playlists = chosenPlaylists.reverse();
+    $.ajax({
+        type: "POST",
+        url:"/songs",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(model),
+        success: function () { window.location = "/songs" }
+    });
+}
 
 export function createNewPlaylist() {
     newPlaylistName = $(".new-playlist-name").val();

@@ -17,7 +17,7 @@ function getPlaylistString(playlist) {
         <input class="playlist-checkbox" type="checkbox" hidden id="${playlist.id}">
         <img class="playlist-thumbnail" src="${playlist.thumbnail}" width="320" height="180">
         <div class="playlist-info">
-            <h5>${playlist.title}</h5>
+            <h5 class="playlist-title">${playlist.title}</h5>
             <h7>${playlist.itemCount} songs</h7>
         </div>
     </div>`
