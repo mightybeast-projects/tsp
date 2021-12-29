@@ -8,6 +8,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/main', function(req, res) {
+    playlists = undefined;
     res.render("main");
 });
 
@@ -24,12 +25,18 @@ router.get('/load', async function(req, res) {
     res.send(loadedState);
 });
 
+router.get('/loadState', async function(req, res) {
+    var loadedState = await dbController.findSavedState(req.query.userEmail);
+    res.send(loadedState);
+});
+
 router.get('/songs', function(req, res) {
     res.render("songs", { playlists: playlists });
 });
 
 router.post('/songs', function(req, res) {
     playlists = req.body.playlists;
+    //req.app.set('playlists', req.body.playlists);
     res.json({success : "Updated Successfully", status : 200});
 });
 

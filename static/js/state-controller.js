@@ -6,8 +6,7 @@ var topSongs = new Array();
 
 var elements;
 
-export function saveState()
-{
+export function saveState() {
     songsPool = getSongsState(".song-pool-content-parent");
     topSongs = getSongsState(".song-top-content-parent");
 
@@ -28,8 +27,7 @@ export function saveState()
     });
 }
 
-export function loadState()
-{
+export function loadState() {
     var userEmail = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
 
     $.ajax({
@@ -39,8 +37,17 @@ export function loadState()
     });
 }
 
-function getSongsState(parentClass)
-{
+export function newLoadState() {
+    var userEmail = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
+
+    $.ajax({
+        type: "GET",
+        url:"/loadState?userEmail=" + userEmail,
+        success : states => initializeState(states[0])
+    });
+}
+
+function getSongsState(parentClass) {
     var tmpArray = new Array();
 
     elements = $(parentClass).children(".song-cell");
@@ -57,8 +64,7 @@ function getSongsState(parentClass)
     return tmpArray;
 }
 
-function initializeState(state)
-{
+function initializeState(state) {
     songsPool = state.songsPoolState;
     topSongs = state.topSongsState;
 

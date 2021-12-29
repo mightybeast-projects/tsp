@@ -12,6 +12,7 @@ window.getAllSongs = songsController.getAllSongs;
 window.createNewPlaylist = playlistController.createNewPlaylist;
 window.saveState = stateController.saveState;
 window.loadState = stateController.loadState;
+window.newLoadState = stateController.newLoadState;
 window.removeSongDiv = function (songDiv) { utils.removeSongDiv(songDiv); };
 window.checkSongsCap = function (songsParent) { utils.checkSongsCap(songsParent); };
 window.getAllSongsOf = function (playlists) { songsController.getAllSongsOf(playlists) }

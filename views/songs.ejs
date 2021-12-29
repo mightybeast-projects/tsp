@@ -34,6 +34,7 @@
                 </div>
             </div>
         </div>
+        <button id="create-save-button" class="btn btn-dark" onclick="saveState()">Save state</button>
     </body>
 
     <script>
@@ -51,9 +52,12 @@
             setTimeout(() => 
             {
                 var playlistsJSON = `<%- JSON.stringify(playlists) %>`;
-                var playlists = JSON.parse(playlistsJSON)
-
-                getAllSongsOf(playlists);
+                if (playlistsJSON == '') newLoadState();
+                else {
+                    var playlists = JSON.parse(playlistsJSON);
+                    console.log(playlists);
+                    getAllSongsOf(playlists);
+                }
             }, 500);
         });
     </script>
