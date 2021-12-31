@@ -24,7 +24,7 @@ async function insertOrUpdate(newState, userEmail)
 async function findSavedState(userEmail)
 {
     await checkConnection();
-    return await collection.find( {userEmail : userEmail} ).toArray();
+    return await collection.find({userEmail : userEmail}).toArray();
 }
 
 module.exports = {

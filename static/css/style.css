@@ -1,285 +1,212 @@
-/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+body {
+    background-color: black;
+    color: white;
+    user-select: none;
+}
 
-a.navbar-brand {
-    white-space: normal;
+::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #3f3f3f;
+}
+
+/*1.AUTH PAGE-------------------------------------------------------------------*/
+
+.visualizer-video {
+    filter: brightness(20%); 
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.auth-div {
+    width: 20%;
+    height: 20%;
     text-align: center;
-    word-break: break-all;
-  }
-  
-  /* Provide sufficient contrast against white background */
-  a {
-    color: #0366d6;
-  }
-  
-  .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-  }
-  
-  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-  }
-  
-  /* Sticky footer styles
-  -------------------------------------------------- */
-  html {
-    font-size: 14px;
-  }
-  @media (min-width: 768px) {
-    html {
-      font-size: 16px;
-    }
-  }
-  
-  .border-top {
-    border-top: 1px solid #e5e5e5;
-  }
-  .border-bottom {
-    border-bottom: 1px solid #e5e5e5;
-  }
-  
-  .box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-  }
-  
-  button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
-  }
-  
-  /* Sticky footer styles
-  -------------------------------------------------- */
-  html {
-    position: relative;
-    min-height: 100%;
-  }
-  
-  body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-  }
-  .footer {
+    color: white;
+}
+
+.div-abs-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*2.PLAYLISTS PAGE--------------------------------------------------------------*/
+
+.choose-playlist-label {
+    margin: 10px;
+}
+
+.playlists-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.playlist-element {
+    padding: 3px;
+    border: 3px solid transparent;
+    border-radius: 5px;
+}
+
+.playlist-checkbox {
+    pointer-events: none;
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
-  }
-  
-  .playlist-container{
-    margin-top: 20px;
-  }
-  
-  .table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 1rem;
-    background-color: transparent
-  }
-  
-  * {
-    outline: none
-  }
-  
-  .table th,
-  .table thead th {
-    font-weight: 500
-  }
-  
-  .table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6
-  }
-  
-  .table th {
-    vertical-align: top;
-    border-top: 1px solid #dee2e6
-  }
-  
-  .table th,
-  .table thead th {
-    font-weight: 500
-  }
-  
-  th {
-    text-align: inherit
-  }
-  
-  .m-b-20 {
-    margin-bottom: 20px
-  }
-  
-  .table td {
+    background-color: white;
     vertical-align: middle;
-  }
-  
-  .table th, .table td{
-    text-align: center;
-  }
-  
-  .container{
-    max-width: 100%;
-  }
-  
-  ::-webkit-scrollbar{
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
-  }
-  /* Optional: show position indicator in red */
-  ::-webkit-scrollbar-thumb{
-    background: #FF0000;
-  }
-  
-  .control-panel{
-    top: 0;
-    position: sticky;
-    width: max-content;
-    margin: 0 auto;
-    z-index: 10;
-  }
-  
-  .g-signin2{
-    height: min-content;
-  }
-  
-  .playlist-table{
-  width: 80%;
-  display: none;
-  
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  
-  box-shadow: 5px 5px 22px -15px #000000;
-  }
-  
-  .playlist-table tr, .playlist-table tr td{
-  padding: 10px;
-  }
-  
-  .playlist-table tr{
-  border-bottom: 1px solid #ebebeb;
-  border-top: 1px solid #ebebeb;
-  }
-  
-  .playlist-table thead{
-  background: #ebebeb;
-  font-weight: 500;
-  }
-  
-  .playlist-table thead .playlist-checkbox-cell{
-  width: 5px;
-  }
-  
-  .playlist-table thead .playlist-thumbnail-cell{
-  width: 120px;
-  }
-  
-  .playlist-name-cell, .playlist-date-cell{
-  text-align: center;
-  }
-  
-  .songs-div{
-  display: none;
-  }
-  
-  .song-top-col, .song-pool-col{
-  margin: 10px;
-  box-shadow: 5px 5px 22px -15px #000000;
-  }
-  
-  .song-top-col{
-  width: calc(100% - 600px - 10px - 10px - 10px - 10px);
-  }
-  
-  .song-pool-content-parent, .song-top-content-parent{
-  color: white;
-  height: 500px;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  }
-  
-  .song-pool-col{
-  width: 600px;
-  }
-  
-  .song-cell{
+    cursor: pointer;
+}
+
+.playlist-checkbox:checked {
+    background-color: green;
+}
+
+.playlist-thumbnail {
+    border-radius: 5px;
+}
+
+.playlist-info {
+    margin-top: 5px;
+}
+
+.btn-success {
+    background-color: green;
+    border-radius: 0;
+}
+
+.get-songs-btn {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    margin-top: 50px;
+}
+
+/*3.SONGS PAGE------------------------------------------------------------------*/
+
+.songs-content {
+    display: flex;
+}
+
+.song-pool-col, .song-top-col  {
+    margin: 5px;
+    width: 50%;
+}
+
+.song-pool-content-parent, .song-top-content-parent {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    color: rgb(255, 255, 255);
+    height: 90vh;
+    overflow-y: scroll;
+    text-shadow: rgb(0, 0, 0) 1px 0px 0px, 
+    rgb(0, 0, 0) 0.540302px 0.841471px 0px, 
+    rgb(0, 0, 0) -0.416147px 0.909297px 0px, 
+    rgb(0, 0, 0) -0.989992px 0.14112px 0px, 
+    rgb(0, 0, 0) -0.653644px -0.756802px 0px, 
+    rgb(0, 0, 0) 0.283662px -0.958924px 0px, 
+    rgb(0, 0, 0) 0.96017px -0.279416px 0px;
+}
+
+.song-pool-content-parent::-webkit-scrollbar, .song-top-content-parent::-webkit-scrollbar { 
+    width: 5px;
+}
+
+.song-cell {
     padding: 10px;
+    margin: 2px;
+    border-radius: 5px;
     text-align: center;
-    box-shadow: 5px 5px 22px -15px #000000;
-    background: url(https://i.ytimg.com/vi/LEXpMSVV5VA/hqdefault.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-blend-mode: multiply;
-  }
-  
-  .song-top-cell, .song-pool-cell{
-  background: #212529;;
-  font-weight: 500;
-  box-shadow: none;
-  color: white;
-  }
-  
-  .song-title{
-  font-weight: 800;
-  font-size: 14pt;
-  margin-top: 100px;
-  -webkit-text-stroke: 0.1px black;
-  white-space: pre;
-  overflow: hidden;
-  }
-  
-  .song-author{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  }
-  
-  .song-pool-content-parent .song-cell{
-  float: left;
+    
+}
+
+.song-cell::before {
+    filter: brightness(90%);
+}
+
+.song-top-cell, .song-pool-cell {
+    background: #3f3f3f;
+    font-weight: 500;
+    box-shadow: none;
+    color: white;
+}
+
+.song-pool-content-parent .song-cell {
+    float: left;
     width: 200px;
     height: 200px;
-  }
-  
-  .song-pool-content-parent .song-cell .song-title{
-  width: 100%;
-  text-align: left;
-  }
-  
-  .song-pool-content-parent .btn-close{
-  float: right;
-  top: 0;
-  opacity: unset;
-  }
-  
-  .song-pool-content-parent .song-author, .song-pool-content-parent .song-source{
-  display: none;
-  } 
-  
-  .song-top-content-parent .btn-close{
-  display: none;
-  }
-  
-  .song-top-content-parent .song-cell .song-title{
-  width: 80%;
-  text-align: left;
-  display: inline-block;
-  margin-top: 0;
-  }
-  
-  .song-top-content-parent .song-cell{
-  height: 80px;
-  background-size: 100%;
-  }
-  
-  .song-top-content-parent .song-source{
-  width: 19%;
+}
+
+.song-top-content-parent .song-cell {
+    width: 100%;
+    height: 80px;
+    background-size: 100%;
+}
+
+/*3.1.SONG CELL-----------------------------------------------------------------*/
+
+.song-title {
+    font-weight: 800;
+    font-size: 14pt;
+    margin-top: 100px;
+    -webkit-text-stroke: 0.1px black;
+    white-space: pre;
+    overflow: hidden;
+}
+
+.song-pool-content-parent .song-cell {
+    float: left;
+    width: 200px;
+    height: 200px;
+}
+
+.song-pool-content-parent .song-cell .song-title {
+    width: 100%;
+    text-align: left;
+}
+
+.song-pool-content-parent .btn-close {
+    float: right;
+    top: 0;
+    opacity: unset;
+}
+
+.song-pool-content-parent .song-source {
+    display: none;
+} 
+
+.song-top-content-parent .btn-close {
+    display: none;
+}
+
+.song-top-content-parent .song-cell .song-title {
+    width: 80%;
+    text-align: left;
+    display: inline-block;
+    margin-top: 0;
+    padding-left: 2px;
+}
+
+.song-top-content-parent .song-cell {
+    height: 80px;
+    background-size: 100%;
+}
+
+.song-top-content-parent .song-source {
+    width: 19%;
     text-align: right;
     vertical-align: top;
-  }
-
-  /*----------------------------------------------------------------------------------------------*/
+}

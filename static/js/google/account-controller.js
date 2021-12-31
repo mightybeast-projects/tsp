@@ -4,7 +4,7 @@ const clientLoadUrl = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/r
 const signInScope = "https://www.googleapis.com/auth/youtube.force-ssl";
 
 const authConfig = { 
-    client_id: clientId, 
+    client_id: clientId,
     ux_mode: 'redirect',
     redirect_uri: 'http://localhost:3000/main'
 }
@@ -13,16 +13,12 @@ export function loadClient() {
     gapi.client.setApiKey(APIKey);
     gapi.client.load(clientLoadUrl)
         .then(
-            () => {
-                console.log("GAPI client loaded for API");
-                $("#get-playlists-button").removeAttr("disabled");
-                $("#get-songs-button").removeAttr("disabled");
-            },
+            () => console.log("GAPI client loaded for API"),
             err => console.error("Error loading GAPI client for API", err));
 }
 
 function authenticate() {
-    return gapi.auth2.getAuthInstance()
+    gapi.auth2.getAuthInstance()
         .signIn({ scope: signInScope })
         .then(
             () => console.log("Sign-in successful"),

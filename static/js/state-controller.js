@@ -6,7 +6,7 @@ var topSongs = new Array();
 
 var elements;
 
-export function saveState() {
+function saveState() {
     songsPool = getSongsState(".song-pool-content-parent");
     topSongs = getSongsState(".song-top-content-parent");
 
@@ -27,22 +27,12 @@ export function saveState() {
     });
 }
 
-export function loadState() {
+function loadState() {
     var userEmail = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
 
     $.ajax({
         type: "GET",
         url:"/load?userEmail=" + userEmail,
-        success : states => initializeState(states[0])
-    });
-}
-
-export function newLoadState() {
-    var userEmail = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
-
-    $.ajax({
-        type: "GET",
-        url:"/loadState?userEmail=" + userEmail,
         success : states => initializeState(states[0])
     });
 }
@@ -68,9 +58,6 @@ function initializeState(state) {
     songsPool = state.songsPoolState;
     topSongs = state.topSongsState;
 
-    utils.changeDisplay($(".playlist-table"), "none");
-    utils.changeDisplay($(".songs-div"), "flex");
-
     songsPool.forEach(element => {
         templateController.appendSongTemplateToSongPool(element);
     });
@@ -79,3 +66,6 @@ function initializeState(state) {
         templateController.appendSongTemplateToSongTop(element);
     });
 }
+
+window.saveState = saveState;
+window.loadState = loadState;

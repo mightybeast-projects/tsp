@@ -1,5 +1,4 @@
 export function appendPlaylistTemplate(playlist) {
-    $(".playlist-table-body").append(getOldPlaylistString(playlist));
     $(".playlists-grid").append(getPlaylistString(playlist));
 }
 
@@ -21,21 +20,6 @@ function getPlaylistString(playlist) {
             <h7>${playlist.itemCount} songs</h7>
         </div>
     </div>`
-}
-
-function getOldPlaylistString(playlist) {
-    return `
-    <tr class="table-row">
-        <td class="playlist-checkbox-cell">
-            <input class="playlist-checkbox" type="checkbox" id="${playlist.id}">
-        </td>
-        <td class="playlist-thumbnail-cell">
-            <img src="${playlist.thumbnail}" width="320" height="180">
-        </td>
-        <td class="playlist-name-cell">${playlist.title}</td>
-        <td class="playlist-date-cell">${playlist.publishDate}</td>
-    </tr>
-    `
 }
 
 function getSongString(song) {

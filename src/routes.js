@@ -16,16 +16,7 @@ router.get('/playlists', function(req, res) {
     res.render("playlists");
 });
 
-router.get('/lindex', function(req, res) {
-    res.render("lindex");
-});
-
 router.get('/load', async function(req, res) {
-    var loadedState = await dbController.findSavedState(req.query.userEmail);
-    res.send(loadedState);
-});
-
-router.get('/loadState', async function(req, res) {
     var loadedState = await dbController.findSavedState(req.query.userEmail);
     res.send(loadedState);
 });
@@ -36,7 +27,6 @@ router.get('/songs', function(req, res) {
 
 router.post('/songs', function(req, res) {
     playlists = req.body.playlists;
-    //req.app.set('playlists', req.body.playlists);
     res.json({success : "Updated Successfully", status : 200});
 });
 
