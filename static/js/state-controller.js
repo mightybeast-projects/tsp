@@ -1,5 +1,4 @@
 import * as templateController from './template-controller.js';
-import * as utils from './utils.js';
 
 var songsPool = new Array();
 var topSongs = new Array();

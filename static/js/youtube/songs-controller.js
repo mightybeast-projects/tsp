@@ -1,4 +1,4 @@
-import '../../google/load-client.js'
+import '../google/load-client.js'
 import * as templateController from '../template-controller.js';
 
 const titleJunk = [
