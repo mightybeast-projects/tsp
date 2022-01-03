@@ -14,6 +14,18 @@ const titleJunk = [
 
 var playlistTitle;
 
+function handleSongsPage(playlistsJSON) {
+    setTimeout(() => {
+        if (playlistsJSON == '') loadState();
+        else {
+            console.log(playlistsJSON);
+            var playlists = JSON.parse(playlistsJSON);
+            console.log(playlists);
+            getAllSongsOf(playlists);
+        }
+    }, 550);
+}
+
 function getAllSongsOf(playlists) {
     playlists.forEach((playlist, index) =>
         setTimeout(() => getSongsOfPlaylist(playlist), 300 * index)
@@ -55,4 +67,5 @@ function trimTitle(songTitle) {
     return songTitle;
 }
 
+window.handleSongsPage = handleSongsPage;
 window.getAllSongsOf = function (playlists) { getAllSongsOf(playlists) }

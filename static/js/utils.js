@@ -30,6 +30,20 @@ function removeSongDiv(songDiv) {
     $(songDiv).parent().remove();
 }
 
+function handleSortableSongs() {
+    $(".song-pool-content-parent").sortable({
+        connectWith: ".sortable"
+    });
+
+    $(".song-top-content-parent").sortable({
+        connectWith: ".sortable",
+        receive: function( event, ui ) {
+            checkSongsCap($(this));
+        }
+    });
+}
+
 window.togglePlaylist = function (songsParent) { togglePlaylist(songsParent); };
 window.removeSongDiv = function (songDiv) { removeSongDiv(songDiv); };
 window.checkSongsCap = function (songsParent) { checkSongsCap(songsParent); };
+window.handleSortableSongs = handleSortableSongs;

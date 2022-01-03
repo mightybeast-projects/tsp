@@ -1,25 +1,5 @@
 import '../../google/load-client.js'
-
-const insertNewPlaylistRequestSettings = {
-    "part": ["snippet,contentDetails"],
-    "resource": {
-        "snippet": {
-            "title": newPlaylistName
-        }
-    }
-}
-const insertSongInPlaylistRequestSettings = {
-    "part": ["snippet"],
-    "resource": {
-        "snippet": {
-            "playlistId": newPlaylistId,
-            "resourceId": {
-                "kind": "youtube#video",
-                "videoId": songIdToInsert
-            }
-        }
-    }
-}
+jQuery.fn.reverse = [].reverse;
 
 var newPlaylistName;
 var newPlaylistId;
@@ -27,11 +7,20 @@ var songIdToInsert;
 
 function createNewPlaylist() {
     newPlaylistName = $(".new-playlist-name").val();
-    setTimeout(() => insertNewPlaylist(newPlaylistName), 5000);
+    console.log(newPlaylistName);
+
+    insertNewPlaylist();
 }
 
 function insertNewPlaylist() {
-    gapi.client.youtube.playlists.insert(insertNewPlaylistRequestSettings)
+    gapi.client.youtube.playlists.insert({
+        "part": ["snippet,contentDetails"],
+        "resource": {
+            "snippet": {
+                "title": newPlaylistName
+            }
+        }
+    })
         .then(
             response => handlePlaylistInsertResponce(response),
             err => console.error("Execute error", err)
@@ -46,19 +35,27 @@ function handlePlaylistInsertResponce(response) {
 }
 
 function insertAllSongsFromTop() {
-    var topSongs = $(".song-top-content-parent").children(".song-cell").reverse();
-    topSongs.items.forEach((element, index) => insertSongToPlaylistWithDelay(element, index));
-}
-
-function insertSongToPlaylistWithDelay(songElement, index) {
-    setTimeout(() => insertSongInPlaylist(songElement), index * 5000);
+    var topSongs = $(".song-top-content-parent").children(".song-cell").reverse().toArray();
+    topSongs.forEach((songElement, index) => 
+        setTimeout(() => insertSongInPlaylist(songElement), index * 7000));
 }
 
 function insertSongInPlaylist(songElement) {
     songIdToInsert = $(songElement).attr('id');
-    gapi.client.youtube.playlistItems.insert(insertSongInPlaylistRequestSettings)
+    gapi.client.youtube.playlistItems.insert({
+        "part": ["snippet"],
+        "resource": {
+            "snippet": {
+                "playlistId": newPlaylistId,
+                "resourceId": {
+                    "kind": "youtube#video",
+                    "videoId": songIdToInsert
+                }
+            }
+        }
+    })
         .then(
-            response => console.log(response.result),
+            response => console.log("Inserted " + response.result.snippet.title),
             err => console.error("Execute error", err)
         );
 }

@@ -38,31 +38,15 @@
             </div>
         </div>
         <button id="create-save-button" class="btn btn-dark" onclick="saveState()">Save state</button>
+        <button id="create-playlist-button" class="btn btn-dark" onclick="createNewPlaylist()">Create new playlist</button>
+        <input class="new-playlist-name" type="text">
     </body>
 
     <script>
-        $( function() {
-            $(".song-pool-content-parent").sortable({
-                connectWith: ".sortable"
-            });
-
-            $(".song-top-content-parent").sortable({
-                connectWith: ".sortable",
-                receive: function( event, ui ) {
-                    checkSongsCap($(this));
-                }
-            });
-
-            setTimeout(() => 
-            {
-                var playlistsJSON = `<%- JSON.stringify(playlists) %>`;
-                if (playlistsJSON == '') loadState();
-                else {
-                    var playlists = JSON.parse(playlistsJSON);
-                    console.log(playlists);
-                    getAllSongsOf(playlists);
-                }
-            }, 500);
+        $(() => 
+        {
+            handleSongsPage(`<%- JSON.stringify(playlists) %>`);
+            handleSortableSongs();
         });
     </script>
 </html>
