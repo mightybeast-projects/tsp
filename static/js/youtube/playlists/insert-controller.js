@@ -6,7 +6,7 @@ var newPlaylistId;
 var songIdToInsert;
 
 function createNewPlaylist() {
-    newPlaylistName = $(".new-playlist-name").val();
+    newPlaylistName = $("#new-playlist-name").val();
     console.log(newPlaylistName);
 
     insertNewPlaylist();

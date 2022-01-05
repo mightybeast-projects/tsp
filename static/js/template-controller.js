@@ -24,10 +24,10 @@ function getPlaylistString(playlist) {
 
 function getSongString(song) {
     return `
-        <div id="${song.id}" class="song-cell ui-state-default" style="
-            background-image: url(${song.thumbnail});
-        ">
-            <button type="button" class="btn-close btn-close-white" aria-label="Close" onClick="removeSongDiv(this)"></button>
+        <div id="${song.id}" class="song-cell ui-state-default" style="background-image: url(${song.thumbnail});" 
+            onClick="switchSong(this)">
+            <button type="button" class="btn-close btn-close-white" aria-label="Close" 
+                onClick="event.stopPropagation(); removeSongDiv(this)"></button>
             <label class="song-title">${song.title}</label>
             <label class="song-source">${song.fromPlaylist}</label>
         </div>

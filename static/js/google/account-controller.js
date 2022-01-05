@@ -1,5 +1,5 @@
 const clientId = "450155192444-hhr9aen7g99eahrvm4fnn4jrmgc6mob2.apps.googleusercontent.com";
-const APIKey = "AIzaSyADyXkYDPEhxIVZpdRgkh71N12qZPsyvjM";
+const APIKey = "AIzaSyC7Ab1VgXyO4ntVpTF9qfg1aXisn2lthFA";
 const clientLoadUrl = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest";
 const signInScope = "https://www.googleapis.com/auth/youtube.force-ssl";
 

@@ -1,6 +1,8 @@
 import '../google/load-client.js'
 import * as templateController from '../template-controller.js';
 
+export var songs = new Array();
+
 const titleJunk = [
     "[NCS Release]",
     "[Monstercat]",
@@ -18,9 +20,7 @@ function handleSongsPage(playlistsJSON) {
     setTimeout(() => {
         if (playlistsJSON == '') loadState();
         else {
-            console.log(playlistsJSON);
             var playlists = JSON.parse(playlistsJSON);
-            console.log(playlists);
             getAllSongsOf(playlists);
         }
     }, 550);
@@ -56,6 +56,7 @@ function showSong(arraySong) {
     song.title = trimTitle(arraySong.snippet.title);
     song.thumbnail = arraySong.snippet.thumbnails.high.url;
     song.fromPlaylist = playlistTitle;
+    songs.push(song);
 
     templateController.appendSongTemplateToSongPool(song);
 }
@@ -67,5 +68,6 @@ function trimTitle(songTitle) {
     return songTitle;
 }
 
+window.songs = songs;
 window.handleSongsPage = handleSongsPage;
 window.getAllSongsOf = function (playlists) { getAllSongsOf(playlists) }

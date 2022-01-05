@@ -1,4 +1,5 @@
 import * as templateController from './template-controller.js';
+import * as songsController from './youtube/songs-controller.js';
 
 var songsPool = new Array();
 var topSongs = new Array();
@@ -58,6 +59,7 @@ function initializeState(state) {
     topSongs = state.topSongsState;
 
     songsPool.forEach(element => {
+        songsController.songs.push(element);
         templateController.appendSongTemplateToSongPool(element);
     });
 

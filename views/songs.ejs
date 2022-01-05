@@ -13,38 +13,47 @@
         <script src="lib/jquery-ui.js"></script>
         <script type="module" src="js/youtube/playlists/insert-controller.js"></script>
         <script type="module" src="js/youtube/songs-controller.js"></script>
+        <script type="module" src="js/youtube/player-controller.js"></script>
         <script type="module" src="js/state-controller.js"></script>
         <script type="module" src="js/utils.js"></script>
+        <script src="https://www.youtube.com/player_api"></script>
     </head>
+    
     <body>
+        
         <div class="songs-content">
             <div class="song-pool-col">
                 <div class="song-cell song-pool-cell">
                     <label class="song-source">Song pool</label>
                 </div>
+                <div id="ytplayer"></div>
                 <div class="song-pool-content-parent sortable">
                     <!--Songs goes here-->
                 </div>
             </div>
-        
+
             <div class="song-top-col">
                 <div class="song-cell song-top-cell">
                     <label class="song-source">Top 50 songs</label>
                 </div>
                 <div class="song-top-content-parent sortable">
                     <!--Top songs goes here-->
-                    
                 </div>
             </div>
         </div>
-        <button id="create-save-button" class="btn btn-dark" onclick="saveState()">Save state</button>
-        <button id="create-playlist-button" class="btn btn-dark" onclick="createNewPlaylist()">Create new playlist</button>
-        <input class="new-playlist-name" type="text">
+
+        <div id="buttons-panel">
+            <h4 id="done-label">And when you are done :</h4>
+            <input id="new-playlist-name" type="text" placeholder="Input top playlist name">
+            and
+            <button id="create-playlist-button" class="btn btn-success" onclick="createNewPlaylist()">Create new playlist</button>
+            or
+            <button id="create-save-button" class="btn btn-warning" onclick="saveState()">Save state</button>
+        </div>
     </body>
 
     <script>
-        $(() => 
-        {
+        $(() => {
             handleSongsPage(`<%- JSON.stringify(playlists) %>`);
             handleSortableSongs();
         });

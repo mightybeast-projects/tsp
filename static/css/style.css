@@ -2,6 +2,7 @@ body {
     background-color: black;
     color: white;
     user-select: none;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -12,6 +13,10 @@ body {
 ::-webkit-scrollbar-thumb {
     border-radius: 2px;
     background: #3f3f3f;
+}
+
+.btn-success {
+    border-radius: 5px;
 }
 
 /*1.AUTH PAGE-------------------------------------------------------------------*/
@@ -91,23 +96,28 @@ body {
 }
 
 /*3.SONGS PAGE------------------------------------------------------------------*/
+iframe {
+    width: 100%;
+}
 
 .songs-content {
     display: flex;
+    justify-content: space-between;
 }
 
 .song-pool-col, .song-top-col  {
+    height: 89vh;
     margin: 5px;
-    width: 50%;
+    width: 49.5%;
 }
 
 .song-pool-content-parent, .song-top-content-parent {
+    height: 83vh;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: space-evenly;
     color: rgb(255, 255, 255);
-    height: 90vh;
     overflow-y: scroll;
     text-shadow: rgb(0, 0, 0) 1px 0px 0px, 
     rgb(0, 0, 0) 0.540302px 0.841471px 0px, 
@@ -116,6 +126,10 @@ body {
     rgb(0, 0, 0) -0.653644px -0.756802px 0px, 
     rgb(0, 0, 0) 0.283662px -0.958924px 0px, 
     rgb(0, 0, 0) 0.96017px -0.279416px 0px;
+}
+
+.song-pool-content-parent {
+    height: calc(83vh - 200px);
 }
 
 .song-pool-content-parent::-webkit-scrollbar, .song-top-content-parent::-webkit-scrollbar { 
@@ -154,6 +168,22 @@ body {
     width: 100%;
     height: 80px;
     background-size: 100%;
+}
+
+#buttons-panel {
+    height: 10vh;
+    width: 100%;
+    height: fit-content;    
+    text-align: center;
+    bottom: 0;
+    padding: 7px;
+    background: #3f3f3f;
+}
+
+#new-playlist-name {
+    vertical-align: middle;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 /*3.1.SONG CELL-----------------------------------------------------------------*/
