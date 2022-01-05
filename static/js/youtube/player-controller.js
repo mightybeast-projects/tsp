@@ -9,10 +9,13 @@ function onYouTubePlayerAPIReady() {
         player = new YT.Player('ytplayer', {
             height: '200',
             width: '320',
-            videoId: songsController.songs[currentSongIndex].id,
-            playerVars: { autoplay: 1, rel: 0 },
+            playerVars: { rel: 0 },
             events: { onStateChange: onPlayerStateChange }
         });
+
+        setTimeout(() =>
+            player.loadVideoById({ videoId: songsController.songs[currentSongIndex].id })
+        ,1500);
     }, 1000);
 }
 
