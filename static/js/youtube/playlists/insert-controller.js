@@ -31,13 +31,13 @@ function handlePlaylistInsertResponce(response) {
     console.log("Playlist created");
     newPlaylistId = response.result.id;
 
-    setTimeout(() => insertAllSongsFromTop(), 7000);
+    setTimeout(() => insertAllSongsFromTop(), 10000);
 }
 
 function insertAllSongsFromTop() {
     var topSongs = $(".song-top-content-parent").children(".song-cell").reverse().toArray();
     topSongs.forEach((songElement, index) => 
-        setTimeout(() => insertSongInPlaylist(songElement), index * 7000));
+        setTimeout(() => insertSongInPlaylist(songElement), index * 10000));
 }
 
 function insertSongInPlaylist(songElement) {

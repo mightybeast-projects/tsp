@@ -10,9 +10,10 @@ const getPlaylistsRequestSettings = {
     "mine": true
 }
 
-setTimeout(() => getPlaylists(), 550);
+setTimeout(() => getPlaylists(), 700);
 
 function getPlaylists() {
+    console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
     gapi.client.youtube.playlists.list(getPlaylistsRequestSettings)
         .then(
             response => showPlaylists(response),
