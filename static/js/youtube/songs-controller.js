@@ -1,4 +1,4 @@
-import '../google/load-client.js'
+import '../google/load-client.js';
 import * as templateController from '../template-controller.js';
 
 export var songs = new Array();
@@ -54,7 +54,7 @@ function showSong(arraySong) {
     var song = new Object();
     song.id = arraySong.snippet.resourceId.videoId;
     song.title = trimTitle(arraySong.snippet.title);
-    song.thumbnail = arraySong.snippet.thumbnails.high.url;
+    song.thumbnail = arraySong.snippet.thumbnails.high?.url || "";
     song.fromPlaylist = playlistTitle;
     songs.push(song);
 
