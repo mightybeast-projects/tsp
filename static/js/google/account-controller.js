@@ -3,10 +3,10 @@ const APIKey = "AIzaSyC7Ab1VgXyO4ntVpTF9qfg1aXisn2lthFA";
 const clientLoadUrl = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest";
 const signInScope = "https://www.googleapis.com/auth/youtube.force-ssl";
 
-const authConfig = { 
+const authConfig = {
     client_id: clientId,
     ux_mode: 'redirect',
-    redirect_uri: 'http://localhost:3000/main'
+    redirect_uri: 'http://localhost:3000/playlists'
 }
 
 export function loadClient() {
